@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/modelSistema.xhtml">
+
+    <ui:define name="conteudo">      
+        <h:form>
+            <p:growl autoUpdate="true"/>
+            <p:panel header="Cadastro de Fornecedores" >
+                <p:panelGrid columns="2" >
+                    Nome Fantasia:<p:inputText value="#{fornecedorControle.fornecedor.nomeFantasia}" required="true"
+                                               requiredMessage="O nome fantasia é obrigatório!"/>                    
+                    <p:outputLabel value="CNPJ" for="cnpj" />
+                    <p:inputMask id="cnpj" value="#{fornecedorControle.fornecedor.cnpj}" mask="999.999.99-99"
+                                 required="true" requiredMessage="O cnpj é obrigatório!"/>
+
+                    <p:outputLabel value="Telefone" for="telefone" />
+                    <p:inputMask id="telefone" value="#{fornecedorControle.fornecedor.telefone1}" mask="(99) 9999-9999"/>
+
+                    <p:outputLabel value="Celular" for="celular" />
+                    <p:inputMask id="celular" value="#{fornecedorControle.fornecedor.telefone2}" mask="(99) 99999-9999"/>
+
+                    Email:<p:inputText value="#{fornecedorControle.fornecedor.email}"/>
+
+                    <p:commandButton value="Salvar" actionListener="#{fornecedorControle.salvar()}"
+                                     action="list" ajax="false" icon="ui-icon-check" />
+                    <p:commandButton value="Cancelar" action="list" immediate="true" ajax="false"/>
+                </p:panelGrid>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>

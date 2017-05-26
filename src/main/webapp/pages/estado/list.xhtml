@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/modelSistema.xhtml">
+
+    <ui:define name="conteudo">
+        <h:form>  
+            <p:panel header="Pesquisa de Estados">
+                <p:panelGrid columns="2">                           
+                    <p:commandButton value="Novo" actionListener="#{estadoControle.novo()}" action="form"/>
+                    <p:commandButton value="Voltar" action="/pages/inicioKontrol.xhtml" />
+                </p:panelGrid>
+
+            </p:panel>
+            <p:dataTable value="#{estadoControle.listaTodos()}" var="e"
+                         paginator="true" rows="5">
+
+                <p:column headerText="Código" filterBy="#{e.id}" filterMatchMode="contains">
+                    #{e.id}
+                </p:column>
+                <p:column headerText="Nome" filterBy="#{e.nome}" filterMatchMode="contains">
+                    #{e.nome}
+                </p:column>
+                <p:column headerText="Sigla" filterBy="#{e.uf}" filterMatchMode="contains">
+                    #{e.uf}
+                </p:column>
+                <p:column headerText="Operações">
+                    <p:commandButton icon="ui-icon-trash" actionListener="#{estadoControle.excluir(e)}"
+                                     ajax="false"/>
+                    <p:commandButton icon="ui-icon-pencil" actionListener="#{estadoControle.editar(e)}"
+                                     action="form" ajax="false"/>
+                </p:column>
+            </p:dataTable>
+
+        </h:form>    
+    </ui:define>
+</ui:composition>

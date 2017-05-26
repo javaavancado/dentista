@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/modelSistema.xhtml">
+
+    <ui:define name="conteudo">
+        <h:form> 
+            <!-- Painel Cadastro de Pacientes -->
+            <p:growl autoUpdate="true"/>
+            <p:panel header="Cadastro de Paciente">             
+                <p:panelGrid columns="6">
+
+                    <p:outputLabel value="Nome:" for="nome" />
+                    <p:inputText id="nome" value="#{pacienteControle.paciente.nome}" required="true"
+                                 requiredMessage="O nome é obrigatório!"/>
+
+                    <p:outputLabel value="Data de nascimento:" for="dtNascimento" />
+                    <p:calendar id="dtNascimento" pattern="dd/MM/yyyy" locale="pt"
+                                value="#{pacienteControle.paciente.dataNascimento}"/>
+
+                    <p:outputLabel value="Profissão:" for="profissão" />
+                    <p:inputText id="profissão" value="#{pacienteControle.paciente.profissaoPaciente}" />
+
+                    <p:outputLabel value="CPF:" for="cpf" />
+                    <p:inputMask id="cpf" value="#{pacienteControle.paciente.cpf}" required="true"
+                                 mask="999.999.999-99" requiredMessage="O cpf é obrigatório!" />
+
+                    <p:outputLabel value="RG:" for="rg" />
+                    <p:inputMask id="rg" value="#{pacienteControle.paciente.rg}" mask="9 999 999 9" />
+
+                    <p:outputLabel value="Estado Civil:" for="estadoCivil" />
+                    <p:inputText id="estadoCivil" value="#{pacienteControle.paciente.estadoCivil}" required="false" />
+
+                    <p:outputLabel value="Telefone:" for="telefone" />
+                    <p:inputMask id="telefone" value="#{pacienteControle.paciente.telefone1}"
+                                 mask="(99) 9999-9999"/>
+
+                    <p:outputLabel value="Celular:" for="celular" />
+                    <p:inputMask id="celular" value="#{pacienteControle.paciente.telefone2}" required="true"
+                                 requiredMessage="O celular é obrigatório!" mask="(99) 99999-9999"/>
+
+                    <p:outputLabel value="E-mail:" for="email" />
+                    <p:inputText id="email" value="#{pacienteControle.paciente.email}" required="false" />
+
+                    <p:outputLabel value="Estado:" for="estado" />
+                    <p:selectOneMenu id="estado" value="#{pacienteControle.paciente.estado}" converter="#{pacienteControle.converterEstado}">
+                        <f:selectItems  value="#{estadoControle.listaTodos()}"
+                                        var="e"
+                                        itemLabel="#{e.uf}"
+                                        itemValue="#{e}"
+                                        />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Cidade:" for="cidade" />
+                    <p:selectOneMenu id="cidade" value="#{pacienteControle.paciente.cidade}" converter="#{pacienteControle.converterCidade}" >
+                        <f:selectItems  value="#{cidadeControle.listaTodos()}"
+                                        var="cid"
+                                        itemLabel="#{cid.nome}"
+                                        itemValue="#{cid}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="CEP:" for="cep" />
+                    <p:inputText id="cep" value="#{pacienteControle.paciente.cep}"/>
+
+                    <p:outputLabel value="Endereço:" for="endereco" />
+                    <p:inputText id="endereco" value="#{pacienteControle.paciente.endereco}" required="false" />
+
+                    <p:outputLabel value="Bairro:" for="bairro" />
+                    <p:inputText id="bairro" value="#{pacienteControle.paciente.bairro}"/>
+
+                    <p:outputLabel value="Numero:" for="numero" />
+                    <p:inputText id="numero" value="#{pacienteControle.paciente.numero}" required="false" />
+
+
+                    <p:outputLabel value="Empresa:" for="empresa" />
+                    <p:inputText id="empresa" value="#{pacienteControle.paciente.empresaTrabalho}" required="false" />                    
+
+                    <p:outputLabel value="Cidade:" for="cidadeCom" />
+                    <p:selectOneMenu id="cidadeCom" value="#{pacienteControle.paciente.cidade}" converter="#{pacienteControle.converterCidade}" >
+                        <f:selectItems  value="#{cidadeControle.listaTodos()}"
+                                        var="cid"
+                                        itemLabel="#{cid.nome}"
+                                        itemValue="#{cid}"/>
+                    </p:selectOneMenu>
+
+                    <p:outputLabel value="Telefone Com.:" for="telefoneCom" />
+                    <p:inputMask id="telefoneCom" value="#{pacienteControle.paciente.telefoneComercial}"
+                                 mask="(99) 9999-9999"/>
+
+                    <p:outputLabel value="CEP:" for="cepCom" />
+                    <p:inputText id="cepCom" value="#{pacienteControle.paciente.cep}" />
+
+                    <p:outputLabel value="Nome do Cônjuge:" for="name" />
+                    <p:inputText id="name" value="#{pacienteControle.paciente.nomeConjuge}" required="false" />
+
+                    <p:outputLabel value="Profissão:" for="prof" />
+                    <p:inputText id="prof" value="#{pacienteControle.paciente.profissaoConjuge}"/>     
+
+                </p:panelGrid>
+                <p:panelGrid columns="2">                           
+                    <p:commandButton value="Salvar" actionListener="#{pacienteControle.salvar()}"
+                                     action="list" ajax="false" icon="ui-icon-check"/>
+                    <p:commandButton value="Cancelar" action="list" immediate="true" ajax="false"/>   
+                </p:panelGrid>
+
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>

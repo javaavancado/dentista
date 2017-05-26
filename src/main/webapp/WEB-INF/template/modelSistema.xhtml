@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Orthos</title>
+                <h:outputStylesheet library="css" name="estilo.css"/>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit  position="north" header="Kontrol Health"
+                               resizable="false" closable="false"
+                               collapsible="false" style="border: none">              
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="190" 
+                              resizable="false" closable="false" 
+                              collapsible="true" style="border: none" >
+                    <h:form>
+                        <p:menu style="width: 160px">
+
+                            <p:submenu label="Principal" rendered="true" >                                                      
+                                <p:menuitem value="Início" outcome="/pages/inicioKontrol.xhtml" icon="ui-icon-home"/>
+                                <p:menuitem value="Agenda" outcome="/pages/agenda/schedule.xhtml" icon="ui-icon-clipboard"/>
+                                <p:menuitem value="Consultas" outcome="/pages/consulta/form.xhtml" icon="ui-icon-bookmark"/>
+                                <p:menuitem value="Pacientes" outcome="/pages/paciente/list.xhtml" icon="ui-icon-person"/>
+                            </p:submenu>
+
+                            <p:submenu label="Cadastros" rendered="true" >                                                      
+                                <p:menuitem value="Estado" outcome="/pages/estado/list.xhtml" icon="ui-icon-pencil"/>
+                                <p:menuitem value="Cidade" outcome="/pages/cidade/list.xhtml" icon="ui-icon-pencil"/>
+                                <p:menuitem value="Funcionário" outcome="/pages/funcionario/list.xhtml" icon="ui-icon-pencil"/>
+                                <p:menuitem value="Fornecedor" outcome="/pages/fornecedor/list.xhtml" icon="ui-icon-pencil"/>
+                                <p:menuitem value="Dentista" outcome="/pages/dentista/list.xhtml" icon="ui-icon-pencil"/>
+                                <p:menuitem value="Medico" outcome="/pages/medico/list.xhtml" icon="ui-icon-pencil"/>
+                                <p:menuitem value="Usuario" outcome="/pages/usuario/list.xhtml" icon="ui-icon-pencil"/>
+                            </p:submenu>
+
+                            <p:submenu label="Movimentos" rendered="true" >                                                      
+                                <p:menuitem value="Finanças" outcome="/pages/contas/form.xhtml" icon="ui-icon-suitcase"/>  
+                                <p:menuitem value="Consultas" outcome="/pages/consulta/list.xhtml" icon="ui-icon-pencil"/>
+                            </p:submenu>
+
+                            <p:submenu label="Relatorios" rendered="true" >                                                      
+                                <p:menuitem value="Relatórios" outcome="/pages/relatorio/form.xhtml" icon="ui-icon-document-b"/>
+                            </p:submenu>
+
+                        </p:menu>
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center" resizable="false" closable="false"
+                              collapsible="false" >
+                    <ui:insert name="conteudo" />
+                </p:layoutUnit>
+
+                <p:layoutUnit header="Kontrol - Soluções em Tecnologia ®" 
+                              position="south" resizable="false" closable="false" effect="click"
+                              collapsible="false" style="border: none">
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>
+

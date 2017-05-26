@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/modelSistema.xhtml">
+
+    <ui:define name="conteudo">
+        <!-- Painel Cadastro de Medicos-->
+        <h:form>
+            <p:growl autoUpdate="true"/>
+            <p:panel header="Cadastro de Médicos" > 
+                <h:panelGrid columns="2" >
+
+                    <p:outputLabel value="Nome" />
+                    <p:inputText value="#{medicoControle.medico.nome}" required="true"
+                                 requiredMessage="O nome é obrigatório!"/>
+                    
+                    <p:outputLabel value="CRM" />
+                    <p:inputText value="#{medicoControle.medico.crm}" required="true"
+                                 requiredMessage="O CRM é obrigatório!"/>
+
+                    <p:outputLabel value="Especialidade"  />
+                    <p:inputText value="#{medicoControle.medico.especialidade}" />                    
+
+                    <p:outputLabel value="Especialidade2"/>
+                    <p:inputText value="#{medicoControle.medico.especialidade2}" />
+
+                    <p:commandButton value="Salvar" actionListener="#{medicoControle.salvar()}"
+                                     action="list" ajax="false" icon="ui-icon-check"/>
+                    <p:commandButton value="Cancelar" action="list" immediate="true" ajax="false"/>
+
+                </h:panelGrid>
+            </p:panel>
+        </h:form>
+    </ui:define>
+</ui:composition>

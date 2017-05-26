@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template/modelSistema.xhtml">
+
+    <ui:define name="conteudo">
+        <h:form>               
+            <p:panel header="Médicos Cadastrados">
+                <p:panelGrid columns="2">                           
+                    <p:commandButton value="Novo" actionListener="#{medicoControle.novo()}" action="form"/>
+                    <p:commandButton value="Voltar" action="/pages/inicioKontrol.xhtml" />
+                </p:panelGrid>
+            </p:panel>    
+            <p:dataTable var="m" value="#{medicoControle.listaTodos()}"
+                         paginator="true" rows="5">
+
+                <p:column headerText="Código" filterBy="#{m.id}" filterMatchMode="contains">
+                    #{m.id}
+                </p:column>
+                <p:column headerText="Nome" filterBy="#{m.nome}" filterMatchMode="contains">
+                    #{m.nome}
+                </p:column>
+                <p:column headerText="CRM" filterBy="#{m.crm}" filterMatchMode="contains">
+                    #{m.crm}
+                </p:column>
+                <p:column headerText="Especialidade" filterBy="#{m.especialidade}" filterMatchMode="contains">
+                    #{m.especialidade}
+                </p:column>
+                <p:column headerText="Especialidade" filterBy="#{m.especialidade2}" filterMatchMode="contains">
+                    #{m.especialidade2}
+                </p:column>
+
+                <p:column headerText="Operações">
+                    <p:commandButton icon="ui-icon-trash" actionListener="#{medicoControle.excluir(m)}"
+                                     ajax="false"/>
+                    <p:commandButton icon="ui-icon-pencil" actionListener="#{medicoControle.editar(m)}"
+                                     action="form" ajax="false"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>    
+    </ui:define>
+</ui:composition>
